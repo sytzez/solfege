@@ -1,4 +1,4 @@
-use crate::vertical::semitones::Semitones;
+use crate::vertical::Semitones;
 
 pub struct Accidental {
     offset: Semitones,

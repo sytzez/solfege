@@ -1,7 +1,5 @@
-use crate::pitch::accidental::Accidental;
-use crate::pitch::pitch_root::PitchRoot;
-use crate::vertical::semitones::{Semitones, SemitonesFromC};
-use crate::vertical::steps::{Steps, StepsFromC};
+use crate::pitch::{Accidental, PitchRoot};
+use crate::vertical::{Semitones, SemitonesFromC, StepsFromC};
 
 pub struct PitchClass {
     root: PitchRoot,

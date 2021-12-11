@@ -1,5 +1,4 @@
-use crate::vertical::semitones::{Semitones, SemitonesFromC};
-use crate::vertical::steps::{Steps, StepsFromC};
+use crate::vertical::{Semitones, SemitonesFromC, Steps, StepsFromC};
 
 pub enum PitchRoot {
     C,

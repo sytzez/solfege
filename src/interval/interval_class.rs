@@ -1,7 +1,5 @@
-use crate::interval::interval_quality::{GetIntervalQuality, IntervalQuality, IsPerfect};
-use crate::interval::interval_root::IntervalRoot;
-use crate::vertical::semitones::{AsSemitones, Semitones};
-use crate::vertical::steps::{AsSteps, Steps};
+use crate::interval::{GetIntervalQuality, IntervalQuality, IntervalRoot, IsPerfect};
+use crate::vertical::{AsSemitones, AsSteps, Semitones, Steps};
 
 pub struct IntervalClass {
     root: IntervalRoot,

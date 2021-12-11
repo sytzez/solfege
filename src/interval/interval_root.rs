@@ -1,6 +1,5 @@
-use crate::interval::interval_quality::{GetIntervalQuality, IntervalQuality, IsPerfect};
-use crate::vertical::semitones::{AsSemitones, Semitones};
-use crate::vertical::steps::{AsSteps, Steps};
+use crate::interval::{GetIntervalQuality, IntervalQuality, IsPerfect};
+use crate::vertical::{AsSemitones, AsSteps, Semitones, Steps};
 
 pub enum IntervalRoot {
     Unison,

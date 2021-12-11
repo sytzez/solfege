@@ -1,6 +1,4 @@
-use crate::vertical::octaves::Octaves;
-use crate::vertical::semitones::{AsSemitones, Semitones, SemitonesFromC0};
-use crate::vertical::steps::{AsSteps, Steps, StepsFromC0};
+use crate::vertical::{Octaves, Semitones, SemitonesFromC0, Steps, StepsFromC0};
 
 pub struct Octave {
     octaves_from_c0: Octaves,

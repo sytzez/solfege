@@ -1,7 +1,6 @@
 use std::ops::{Add, Sub};
 use crate::common::Scalar;
-use crate::vertical::semitones::{AsSemitones, Semitones};
-use crate::vertical::steps::{AsSteps, Steps};
+use crate::vertical::{AsSemitones, AsSteps, Semitones, Steps};
 
 #[derive(Copy, Eq, Ord)]
 pub struct Octaves(Scalar);

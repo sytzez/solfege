@@ -1,9 +1,6 @@
-use crate::interval::interval_class::IntervalClass;
-use crate::interval::interval_quality::{GetIntervalQuality, IntervalQuality, IsPerfect};
-use crate::pitch::pitch::Pitch;
-use crate::vertical::octaves::Octaves;
-use crate::vertical::semitones::{AsSemitones, Semitones};
-use crate::vertical::steps::{AsSteps, Steps};
+use crate::interval::{GetIntervalQuality, IntervalClass, IntervalQuality, IsPerfect};
+use crate::pitch::Pitch;
+use crate::vertical::{AsSemitones, AsSteps, Octaves, Semitones, Steps};
 
 pub struct Interval {
     class: IntervalClass,
