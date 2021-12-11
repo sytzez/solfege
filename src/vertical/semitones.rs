@@ -1,7 +1,7 @@
 use std::ops::{Add, Sub};
 use crate::common::Scalar;
 
-#[derive(Copy, Eq, Ord)]
+#[derive(Copy, Eq, Ord, Clone, PartialOrd, PartialEq)]
 pub struct Semitones(Scalar);
 
 pub trait AsSemitones {
