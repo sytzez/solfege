@@ -2,7 +2,7 @@ use std::ops::{Add, Sub};
 use crate::common::Scalar;
 
 #[derive(Copy, Eq, Ord, Clone, PartialOrd, PartialEq)]
-pub struct Steps(Scalar);
+pub struct Steps(pub Scalar);
 
 pub trait AsSteps {
     fn as_steps(&self) -> Steps;
@@ -14,12 +14,6 @@ pub trait StepsFromC {
 
 pub trait StepsFromC0 {
     fn steps_from_c0(&self) -> Steps;
-}
-
-impl Steps {
-    pub fn new(value: Scalar) -> Self {
-        Self(value)
-    }
 }
 
 impl Add for Steps {

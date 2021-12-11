@@ -1,5 +1,6 @@
 use crate::vertical::Semitones;
 
+#[derive(Copy, Clone)]
 pub struct Accidental {
-    offset: Semitones,
+    pub offset: Semitones,
 }

@@ -1,7 +1,8 @@
 use crate::vertical::{AsSemitones, AsSteps, Octaves, Semitones, SemitonesFromC0, Steps, StepsFromC0};
 
+#[derive(Copy, Clone)]
 pub struct Octave {
-    octaves_from_c0: Octaves,
+    pub octaves_from_c0: Octaves,
 }
 
 impl StepsFromC0 for Octave {

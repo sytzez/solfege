@@ -1,8 +1,9 @@
 use crate::vertical::Semitones;
 
+#[derive(Copy, Clone)]
 pub struct IntervalQuality {
-    is_perfectable: bool,
-    offset: Semitones,
+    pub is_perfectable: bool,
+    pub offset: Semitones,
 }
 
 pub trait GetIntervalQuality {
@@ -21,6 +22,6 @@ impl IntervalQuality {
 
 impl IsPerfect for IntervalQuality {
     fn is_perfect(&self) -> bool {
-        self.is_perfectable && self.offset == Semitones::new(0)
+        self.is_perfectable && self.offset == Semitones(0)
     }
 }

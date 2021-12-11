@@ -1,16 +1,10 @@
 use crate::interval::{GetIntervalQuality, IntervalClass, IntervalQuality, IsPerfect};
-use crate::pitch::Pitch;
 use crate::vertical::{AsSemitones, AsSteps, Octaves, Semitones, Steps};
 
+#[derive(Copy, Clone)]
 pub struct Interval {
-    class: IntervalClass,
-    octaves: Octaves,
-}
-
-impl Interval {
-    pub fn between_pitches(from: Pitch, to: Pitch) -> Self {
-        // TODO
-    }
+    pub class: IntervalClass,
+    pub octaves: Octaves,
 }
 
 impl AsSteps for Interval {

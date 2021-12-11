@@ -1,6 +1,7 @@
 use crate::interval::{GetIntervalQuality, IntervalQuality, IsPerfect};
 use crate::vertical::{AsSemitones, AsSteps, Semitones, Steps};
 
+#[derive(Copy, Clone)]
 pub enum IntervalRoot {
     Unison,
     Second,
@@ -23,7 +24,7 @@ impl AsSteps for IntervalRoot {
             Self::Seventh => 6,
         };
 
-        Steps::new(value)
+        Steps(value)
     }
 }
 
@@ -39,7 +40,7 @@ impl AsSemitones for IntervalRoot {
             Self::Seventh => 11,
         };
 
-        Semitones::new(value)
+        Semitones(value)
     }
 }
 
@@ -59,9 +60,9 @@ impl IsPerfect for IntervalRoot {
 
 impl GetIntervalQuality for IntervalRoot {
     fn get_interval_quality(&self) -> IntervalQuality {
-        IntervalQuality::new(
-            self.is_perfect(),
-            Semitones::new(0),
-        )
+        IntervalQuality {
+            is_perfectable: self.is_perfect(),
+            offset: Semitones(0),
+        }
     }
 }

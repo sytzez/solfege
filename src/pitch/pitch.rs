@@ -1,6 +1,7 @@
 use crate::pitch::{Octave, PitchClass};
 use crate::vertical::{Semitones, SemitonesFromC, SemitonesFromC0, Steps, StepsFromC, StepsFromC0};
 
+#[derive(Copy, Clone)]
 pub struct Pitch {
     octave: Octave,
     class: PitchClass,

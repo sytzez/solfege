@@ -1,5 +1,6 @@
 use crate::vertical::{Semitones, SemitonesFromC, Steps, StepsFromC};
 
+#[derive(Copy, Clone)]
 pub enum PitchRoot {
     C,
     D,
@@ -22,7 +23,7 @@ impl StepsFromC for PitchRoot {
             Self::B => 6,
         };
 
-        Steps::new(value)
+        Steps(value)
     }
 }
 
@@ -38,6 +39,6 @@ impl SemitonesFromC for PitchRoot {
             Self::B => 11,
         };
 
-        Semitones::new(value)
+        Semitones(value)
     }
 }

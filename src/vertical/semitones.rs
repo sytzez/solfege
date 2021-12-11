@@ -2,7 +2,7 @@ use std::ops::{Add, Sub};
 use crate::common::Scalar;
 
 #[derive(Copy, Eq, Ord, Clone, PartialOrd, PartialEq)]
-pub struct Semitones(Scalar);
+pub struct Semitones(pub Scalar);
 
 pub trait AsSemitones {
     fn as_semitones(&self) -> Semitones;
@@ -14,12 +14,6 @@ pub trait SemitonesFromC {
 
 pub trait SemitonesFromC0 {
     fn semitones_from_c0(&self) -> Semitones;
-}
-
-impl Semitones {
-    pub fn new(value: Scalar) -> Self {
-        Self(value)
-    }
 }
 
 impl Add for Semitones {

@@ -1,9 +1,10 @@
 use crate::interval::{GetIntervalQuality, IntervalQuality, IntervalRoot, IsPerfect};
 use crate::vertical::{AsSemitones, AsSteps, Semitones, Steps};
 
+#[derive(Copy, Clone)]
 pub struct IntervalClass {
-    root: IntervalRoot,
-    semitones: Semitones,
+    pub root: IntervalRoot,
+    pub semitones: Semitones,
 }
 
 impl AsSteps for IntervalClass {
@@ -26,9 +27,9 @@ impl IsPerfect for IntervalClass {
 
 impl GetIntervalQuality for IntervalClass {
     fn get_interval_quality(&self) -> IntervalQuality {
-        IntervalQuality::new(
-            self.root.is_perfect(),
-            self.semitones - self.root.as_semitones(),
-        )
+        IntervalQuality {
+            is_perfectable: self.root.is_perfect(),
+            offset: self.semitones - self.root.as_semitones(),
+        }
     }
 }
