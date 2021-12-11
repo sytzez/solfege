@@ -16,6 +16,12 @@ pub trait StepsFromC0 {
     fn steps_from_c0(&self) -> Steps;
 }
 
+impl Steps {
+    pub fn new(value: Scalar) -> Self {
+        Self(value)
+    }
+}
+
 impl Add for Steps {
     type Output = Self;
 

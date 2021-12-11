@@ -16,6 +16,12 @@ pub trait SemitonesFromC0 {
     fn semitones_from_c0(&self) -> Semitones;
 }
 
+impl Semitones {
+    pub fn new(value: Scalar) -> Self {
+        Self(value)
+    }
+}
+
 impl Add for Semitones {
     type Output = Self;
 

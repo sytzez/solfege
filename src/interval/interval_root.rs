@@ -13,29 +13,33 @@ pub enum IntervalRoot {
 
 impl AsSteps for IntervalRoot {
     fn as_steps(&self) -> Steps {
-        match *self {
-            Self::Unison => Steps(0),
-            Self::Second => Steps(1),
-            Self::Third => Steps(2),
-            Self::Fourth => Steps(3),
-            Self::Fifth => Steps(4),
-            Self::Sixth => Steps(5),
-            Self::Seventh => Steps(6),
-        }
+        let value = match *self {
+            Self::Unison => 0,
+            Self::Second => 1,
+            Self::Third => 2,
+            Self::Fourth => 3,
+            Self::Fifth => 4,
+            Self::Sixth => 5,
+            Self::Seventh => 6,
+        };
+
+        Steps::new(value)
     }
 }
 
 impl AsSemitones for IntervalRoot {
     fn as_semitones(&self) -> Semitones {
-        match *self {
-            Self::Unison => Semitones(0),
-            Self::Second => Semitones(2),
-            Self::Third => Semitones(4),
-            Self::Fourth => Semitones(5),
-            Self::Fifth => Semitones(7),
-            Self::Sixth => Semitones(9),
-            Self::Seventh => Semitones(11),
-        }
+        let value = match *self {
+            Self::Unison => 0,
+            Self::Second => 2,
+            Self::Third => 4,
+            Self::Fourth => 5,
+            Self::Fifth => 7,
+            Self::Sixth => 9,
+            Self::Seventh => 11,
+        };
+
+        Semitones::new(value)
     }
 }
 
@@ -57,7 +61,7 @@ impl GetIntervalQuality for IntervalRoot {
     fn get_interval_quality(&self) -> IntervalQuality {
         IntervalQuality::new(
             self.is_perfect(),
-            Offset(0),
+            Semitones::new(0),
         )
     }
 }

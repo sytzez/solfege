@@ -1,5 +1,5 @@
 use crate::pitch::{Octave, PitchClass};
-use crate::vertical::{SemitonesFromC, SemitonesFromC0, StepsFromC, StepsFromC0};
+use crate::vertical::{Semitones, SemitonesFromC, SemitonesFromC0, Steps, StepsFromC, StepsFromC0};
 
 pub struct Pitch {
     octave: Octave,

@@ -21,6 +21,6 @@ impl IntervalQuality {
 
 impl IsPerfect for IntervalQuality {
     fn is_perfect(&self) -> bool {
-        self.is_perfectable && self.offset == Offset(0)
+        self.is_perfectable && self.offset == Semitones::new(0)
     }
 }

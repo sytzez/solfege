@@ -5,11 +5,17 @@ use crate::vertical::{AsSemitones, AsSteps, Semitones, Steps};
 #[derive(Copy, Eq, Ord)]
 pub struct Octaves(Scalar);
 
+impl Octaves {
+    pub fn new(value: Scalar) -> Self {
+        Self(value)
+    }
+}
+
 impl Add for Octaves {
     type Output = Self;
 
     fn add(self, rhs: Self) -> Self::Output {
-        Steps(self.0 + rhs.0)
+        Self::new(self.0 + rhs.0)
     }
 }
 
@@ -17,18 +23,18 @@ impl Sub for Octaves {
     type Output = Self;
 
     fn sub(self, rhs: Self) -> Self::Output {
-        Steps(self.0 - rhs.0)
+        Self(self.0 - rhs.0)
     }
 }
 
 impl AsSteps for Octaves {
     fn as_steps(&self) -> Steps {
-        Steps(self.0 * 7)
+        Steps::new(self.0 * 7)
     }
 }
 
 impl AsSemitones for Octaves {
     fn as_semitones(&self) -> Semitones {
-        Semitones(self.0 * 12)
+        Semitones::new(self.0 * 12)
     }
 }
