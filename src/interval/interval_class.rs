@@ -27,7 +27,7 @@ impl IsPerfect for IntervalClass {
 impl GetIntervalQuality for IntervalClass {
     fn get_interval_quality(&self) -> IntervalQuality {
         IntervalQuality::new(
-            is_perfectable: self.root.is_perfect(),
+            self.root.is_perfect(),
             self.semitones - self.root.as_semitones(),
         )
     }
