@@ -21,6 +21,10 @@ impl SemitonesFromC0 for Pitch {
 
 impl ToString for Pitch {
     fn to_string(&self) -> String {
-        format!("{}{}", self.class.to_string(), self.octave.octaves_from_c0.0.to_string())
+        format!(
+            "{}{}",
+            self.class.to_string(),
+            self.octave.octaves_from_c0.0,
+        )
     }
 }

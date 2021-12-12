@@ -66,3 +66,9 @@ impl GetIntervalQuality for IntervalRoot {
         }
     }
 }
+
+impl ToString for IntervalRoot {
+    fn to_string(&self) -> String {
+        (self.as_steps().0 + 1).to_string()
+    }
+}

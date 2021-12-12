@@ -16,3 +16,9 @@ impl SemitonesFromC0 for Octave {
         self.octaves_from_c0.as_semitones()
     }
 }
+
+impl ToString for Octave {
+    fn to_string(&self) -> String {
+        format!("C{0}..B{0}", self.octaves_from_c0.0)
+    }
+}

@@ -33,3 +33,13 @@ impl GetIntervalQuality for Interval {
         self.class.get_interval_quality()
     }
 }
+
+impl ToString for Interval {
+    fn to_string(&self) -> String {
+        format!(
+            "{}{}",
+            self.get_interval_quality().to_string(),
+            self.as_steps().0 + 1,
+        )
+    }
+}
