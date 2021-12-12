@@ -42,3 +42,19 @@ impl SemitonesFromC for PitchRoot {
         Semitones(value)
     }
 }
+
+impl ToString for PitchRoot {
+    fn to_string(&self) -> String {
+        let char = match *self {
+            Self::C => 'C',
+            Self::D => 'D',
+            Self::E => 'E',
+            Self::F => 'F',
+            Self::G => 'G',
+            Self::A => 'A',
+            Self::B => 'B',
+        };
+
+        String::from(char)
+    }
+}

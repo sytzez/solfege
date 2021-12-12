@@ -18,3 +18,9 @@ impl SemitonesFromC for PitchClass {
         self.root.semitones_from_c() + self.accidental.offset
     }
 }
+
+impl ToString for PitchClass {
+    fn to_string(&self) -> String {
+        format!("{}{}", self.root.to_string(), self.accidental.to_string())
+    }
+}

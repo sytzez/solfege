@@ -3,8 +3,8 @@ use crate::vertical::{Semitones, SemitonesFromC, SemitonesFromC0, Steps, StepsFr
 
 #[derive(Copy, Clone)]
 pub struct Pitch {
-    octave: Octave,
-    class: PitchClass,
+    pub octave: Octave,
+    pub class: PitchClass,
 }
 
 impl StepsFromC0 for Pitch {
@@ -16,5 +16,11 @@ impl StepsFromC0 for Pitch {
 impl SemitonesFromC0 for Pitch {
     fn semitones_from_c0(&self) -> Semitones {
         self.octave.semitones_from_c0() + self.class.semitones_from_c()
+    }
+}
+
+impl ToString for Pitch {
+    fn to_string(&self) -> String {
+        format!("{}{}", self.class.to_string(), self.octave.octaves_from_c0.0.to_string())
     }
 }

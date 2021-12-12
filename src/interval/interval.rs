@@ -7,6 +7,9 @@ pub struct Interval {
     pub octaves: Octaves,
 }
 
+// from_steps_and_semitones
+// between_pitches
+
 impl AsSteps for Interval {
     fn as_steps(&self) -> Steps {
         self.class.as_steps() + self.octaves.as_steps()
