@@ -1,5 +1,5 @@
 use crate::common::Scalar;
-use crate::vertical::Semitones;
+use crate::vertical::{Semitones, Transpose};
 
 /// Represents an [accidental](https://en.wikipedia.org/wiki/Accidental_(music)).
 ///
@@ -14,6 +14,12 @@ use crate::vertical::Semitones;
 #[derive(Copy, Clone)]
 pub struct Accidental {
     pub offset: Semitones,
+}
+
+impl Transpose<Semitones> for Accidental {
+    fn transpose(&self, delta: Semitones) -> Self {
+        Accidental { offset: self.offset + delta }
+    }
 }
 
 impl ToString for Accidental {

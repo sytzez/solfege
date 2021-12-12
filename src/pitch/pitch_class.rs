@@ -1,5 +1,6 @@
+use crate::interval::IntervalClass;
 use crate::pitch::{Accidental, PitchRoot};
-use crate::vertical::{Semitones, SemitonesFromC, Steps, StepsFromC};
+use crate::vertical::{Semitones, SemitonesFromC, Steps, StepsFromC, Transpose};
 
 /// Represents a [pitch class](https://en.wikipedia.org/wiki/Pitch_class); a pitch root with an accidental.
 ///
@@ -31,6 +32,33 @@ impl StepsFromC for PitchClass {
 impl SemitonesFromC for PitchClass {
     fn semitones_from_c(&self) -> Semitones {
         self.root.semitones_from_c() + self.accidental.offset
+    }
+}
+
+impl Transpose<Steps> for PitchClass {
+    fn transpose(&self, delta: Steps) -> Self {
+        PitchClass {
+            root: self.root.transpose(delta),
+            accidental: self.accidental,
+        }
+    }
+}
+
+impl Transpose<Semitones> for PitchClass {
+    fn transpose(&self, delta: Semitones) -> Self {
+        PitchClass {
+            root: self.root,
+            accidental: self.accidental.transpose(delta),
+        }
+    }
+}
+
+impl Transpose<&IntervalClass> for PitchClass {
+    fn transpose(&self, delta: &IntervalClass) -> Self {
+        PitchClass {
+            root: self.root.transpose(&delta.root),
+            accidental: self.accidental.transpose(delta.semitones), // TODO: wrong
+        }
     }
 }
 
