@@ -1,6 +1,21 @@
 use crate::interval::{GetIntervalQuality, IntervalQuality, IntervalRoot, IsPerfect};
 use crate::vertical::{AsSemitones, AsSteps, Semitones, Steps};
 
+/// Represents a simple interval with a quality.
+///
+/// # Examples
+///
+/// ```
+/// use solfege::interval::*;
+/// use solfege::vertical::*;
+///
+/// let major_third = IntervalClass {
+///     root: IntervalRoot::Third,
+///     semitones: Semitones(4),
+/// };
+///
+/// assert_eq!(major_third.to_string(), "M3");
+/// ```
 #[derive(Copy, Clone)]
 pub struct IntervalClass {
     pub root: IntervalRoot,

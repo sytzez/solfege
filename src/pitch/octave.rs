@@ -1,5 +1,19 @@
 use crate::vertical::{AsSemitones, AsSteps, Octaves, Semitones, SemitonesFromC0, Steps, StepsFromC0};
 
+/// Represents an [octave](https://en.wikipedia.org/wiki/Octave) range from C to B.
+///
+/// # Examples
+///
+/// ```
+/// use solfege::pitch::*;
+/// use solfege::vertical::*;
+///
+/// let c4_to_b4 = Octave {
+///     octaves_from_c0: Octaves(4),
+/// };
+///
+/// assert_eq!(c4_to_b4.to_string(), "C4..B4");
+/// ```
 #[derive(Copy, Clone)]
 pub struct Octave {
     pub octaves_from_c0: Octaves,

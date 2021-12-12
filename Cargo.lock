@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "rust-test"
+name = "solfege"
 version = "0.1.0"

@@ -1,6 +1,16 @@
 use crate::interval::{GetIntervalQuality, IntervalQuality, IsPerfect};
 use crate::vertical::{AsSemitones, AsSteps, Semitones, Steps};
 
+/// One of the 7 [simple intervals](https://en.wikipedia.org/wiki/Interval_(music)#Main_intervals): Unison, Second, Third, Fourth, Fifth, Sixth or Seventh.
+///
+/// # Examples
+/// ```
+/// use solfege::interval::IntervalRoot;
+///
+/// let third = IntervalRoot::Third;
+///
+/// assert_eq!(third.to_string(), "3");
+/// ```
 #[derive(Copy, Clone)]
 pub enum IntervalRoot {
     Unison,

@@ -1,5 +1,16 @@
 use crate::vertical::{Semitones, SemitonesFromC, Steps, StepsFromC};
 
+/// Represents one of the seven roots a pitch can have: C, D, E, F, G, A or B.
+///
+/// # Examples
+///
+/// ```
+/// use solfege::pitch::PitchRoot;
+///
+/// let c = PitchRoot::C;
+///
+/// assert_eq!("C", c.to_string())
+/// ```
 #[derive(Copy, Clone)]
 pub enum PitchRoot {
     C,

@@ -2,6 +2,7 @@ use std::ops::{Add, Sub};
 use crate::common::Scalar;
 use crate::vertical::{AsSemitones, AsSteps, Semitones, Steps};
 
+/// Represents a distance in [octaves](https://en.wikipedia.org/wiki/Octave)
 #[derive(Copy, Eq, Ord, Clone, PartialOrd, PartialEq)]
 pub struct Octaves(pub Scalar);
 

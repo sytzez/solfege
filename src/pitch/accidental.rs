@@ -1,6 +1,16 @@
 use crate::common::Scalar;
 use crate::vertical::Semitones;
 
+/// Represents an [accidental](https://en.wikipedia.org/wiki/Accidental_(music)).
+///
+/// ```
+/// use solfege::pitch::*;
+/// use solfege::vertical::*;
+///
+/// let sharp = Accidental { offset: Semitones(1) };
+///
+///  assert_eq!(sharp.to_string(), "♯");
+/// ```
 #[derive(Copy, Clone)]
 pub struct Accidental {
     pub offset: Semitones,
