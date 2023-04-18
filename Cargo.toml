@@ -2,9 +2,6 @@
 name = "solfege"
 version = "0.1.0"
 edition = "2021"
-description = "Data structures to represent music"
-license = "MIT"
-keywords = ["music", "notation"]
-categories = ["data-structures"]
 
 [dependencies]
+serde = { version = "1", features = ["derive"] }

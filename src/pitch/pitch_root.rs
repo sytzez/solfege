@@ -1,18 +1,9 @@
 use crate::interval::IntervalRoot;
-use crate::vertical::{AsSteps, Semitones, SemitonesFromC, Steps, StepsFromC, Transpose};
+use crate::vertical::{InSteps, Semitones, SemitonesFromC, Steps, StepsFromC, TransposedBy};
+use std::fmt::{Display, Formatter};
 
 /// Represents one of the seven roots a pitch can have: C, D, E, F, G, A or B.
-///
-/// # Examples
-///
-/// ```
-/// use solfege::pitch::PitchRoot;
-///
-/// let c = PitchRoot::C;
-///
-/// assert_eq!("C", c.to_string())
-/// ```
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Ord, PartialOrd, Eq, PartialEq, Hash, Debug)]
 pub enum PitchRoot {
     C,
     D,
@@ -58,17 +49,6 @@ impl SemitonesFromC for PitchRoot {
 impl From<Steps> for PitchRoot {
     /// Creates a root pitch from the number of steps from C,
     /// wrapping around if the steps are less than 0 or more than 6
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use solfege::pitch::PitchRoot;
-    /// use solfege::vertical::Steps;
-    ///
-    /// assert_eq!(PitchRoot::from(Steps(2)).to_string(), "E");
-    /// assert_eq!(PitchRoot::from(Steps(9)).to_string(), "E");
-    /// assert_eq!(PitchRoot::from(Steps(-5)).to_string(), "E");
-    /// ```
     fn from(steps_from_c: Steps) -> Self {
         match (steps_from_c.0 % 7 + 7) % 7 {
             0 => Self::C,
@@ -83,45 +63,24 @@ impl From<Steps> for PitchRoot {
     }
 }
 
-impl Transpose<Steps> for PitchRoot {
+impl TransposedBy<Steps> for PitchRoot {
     /// Transposes the root pitch by a number of steps,
     /// wrapping back to C if the result passes B
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use solfege::pitch::PitchRoot;
-    /// use solfege::vertical::{Steps, Transpose};
-    ///
-    /// assert_eq!(PitchRoot::C.transpose(Steps(2)).to_string(), "E");
-    /// assert_eq!(PitchRoot::B.transpose(Steps(2)).to_string(), "D");
-    /// ```
-    fn transpose(&self, delta: Steps) -> Self {
+    fn transposed_by(&self, delta: Steps) -> Self {
         Self::from(self.steps_from_c() + delta)
     }
 }
 
-impl Transpose<&IntervalRoot> for PitchRoot {
+impl TransposedBy<IntervalRoot> for PitchRoot {
     /// Transposes the root pitch by an interval root,
     /// wrapping back to C if the result passes B
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use solfege::pitch::PitchRoot;
-    /// use solfege::interval::IntervalRoot;
-    /// use solfege::vertical::Transpose;
-    ///
-    /// assert_eq!(PitchRoot::C.transpose(&IntervalRoot::Third).to_string(), "E");
-    /// assert_eq!(PitchRoot::B.transpose(&IntervalRoot::Third).to_string(), "D");
-    /// ```
-    fn transpose(&self, delta: &IntervalRoot) -> Self {
-        self.transpose(delta.as_steps())
+    fn transposed_by(&self, delta: IntervalRoot) -> Self {
+        self.transposed_by(delta.in_steps())
     }
 }
 
-impl ToString for PitchRoot {
-    fn to_string(&self) -> String {
+impl Display for PitchRoot {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         let char = match *self {
             Self::C => 'C',
             Self::D => 'D',
@@ -132,6 +91,75 @@ impl ToString for PitchRoot {
             Self::B => 'B',
         };
 
-        String::from(char)
+        write!(f, "{}", char)
+    }
+}
+
+impl TryFrom<&str> for PitchRoot {
+    type Error = &'static str;
+
+    fn try_from(value: &str) -> Result<Self, Self::Error> {
+        match value {
+            "C" => Ok(Self::C),
+            "D" => Ok(Self::D),
+            "E" => Ok(Self::E),
+            "F" => Ok(Self::F),
+            "G" => Ok(Self::G),
+            "A" => Ok(Self::A),
+            "B" => Ok(Self::B),
+            _ => Err("Could not recognise pitch root"),
+        }
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::IntervalRoot::*;
+    use super::PitchRoot::*;
+    use crate::{
+        pitch::PitchRoot,
+        vertical::{Semitones, SemitonesFromC, Steps, StepsFromC, TransposedBy},
+    };
+
+    #[test]
+    fn order() {
+        assert!(C < D);
+        assert!(C < B);
+    }
+
+    #[test]
+    fn steps_from_c() {
+        assert_eq!(C.steps_from_c(), Steps(0));
+        assert_eq!(B.steps_from_c(), Steps(6));
+    }
+
+    #[test]
+    fn semitones_from_c() {
+        assert_eq!(C.semitones_from_c(), Semitones(0));
+        assert_eq!(B.semitones_from_c(), Semitones(11));
+    }
+
+    #[test]
+    fn from_steps() {
+        assert_eq!(PitchRoot::from(Steps(2)), E);
+        assert_eq!(PitchRoot::from(Steps(9)), E);
+        assert_eq!(PitchRoot::from(Steps(-5)), E);
+    }
+
+    #[test]
+    fn transposed_by_steps() {
+        assert_eq!(C.transposed_by(Steps(2)), E);
+        assert_eq!(B.transposed_by(Steps(2)), D);
+    }
+
+    #[test]
+    fn transposed_by_interval_root() {
+        assert_eq!(C.transposed_by(Third), E);
+        assert_eq!(B.transposed_by(Third), D);
+    }
+
+    #[test]
+    fn display() {
+        assert_eq!(C.to_string(), "C");
     }
 }
